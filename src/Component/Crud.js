@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {adddata, Deletedata, Editdata} from "../Redux/Action/action";
+import {adddata, Deletedata, Editdata, Updatedata} from "../Redux/Action/action";
 
 const Crud = () =>{
     
@@ -8,30 +8,51 @@ const Crud = () =>{
     const [discription, setDiscription] = useState("");
     
     const data = useSelector((state) => state.reducer.data )
-
+    const test = useSelector((state) => state.reducer )
+    console.log("data",data)
+    var id = test.id;
+    // console.log("global id",id)
+    var record = test.isEdit;
+    
+    
     const dispatch = useDispatch();
     const handletitle = (e) => setTitle(e.target.value);
     const handlediscription = (e) => setDiscription(e.target.value);
 
-   
+
 
     const Save = (event) =>{
+        var id = test.id;
         event.preventDefault();
         let obj = {title,discription}
-        dispatch(adddata(obj))  
-        document.getElementById("myform").reset();
+        dispatch(adddata(obj,id+1))
+        setTitle("")
+        setDiscription("")
+        document.getElementById("myform").reset();  
+        
     }
 
-  
     const Edit = (id) =>{
-        // console.log("editable id",data); 
-        dispatch(Editdata(id,data))       
+        dispatch(Editdata(id,data))
     }
+    
+
+    useEffect(()=>{
+        var record = test.isEdit;
+        console.log(54545,record)
+        if(record){
+            setTitle(record.title)
+            setDiscription(record.discription)
+        }
+    },[record])
 
     const Delete = (id) =>{
-        // console.log("id",id);
-        dispatch(Deletedata(id)) 
+        dispatch(Deletedata(id))
     }
+    // const Update = (record) =>{
+    //     var id = test.id;
+    //     dispatch(Updatedata(record,id))
+    // }
 
     return(
         
@@ -50,6 +71,7 @@ const Crud = () =>{
                             // onChange={(e)=>setState({...state,title:e.target.value})}
                             value={title}
                             onChange={handletitle}
+                            required
                             />   
                         </div>
                         <div className="form-field">
@@ -59,10 +81,19 @@ const Crud = () =>{
                             // onChange={(e)=>setState({...state,discription:e.target.value})}
                             value={discription}
                             onChange={handlediscription}
+                            required
                             />   
                         </div>
                         <div className="form-field">
-                            <button onClick={Save}>Save Data</button>
+                        <button onClick={Save}>
+                                {
+                                    
+                                    record ? 
+                                    "Update"
+                                    : 
+                                    "Save"
+                                }
+                             </button>
                         </div>
                     </form>
                 </div>
@@ -84,7 +115,7 @@ const Crud = () =>{
                                     {
                                         data.map((item,id)=>
                                         <tr key={id}>
-                                            <td>{id}</td>
+                                            <td>{id+1}</td>
                                             <td>{item.title}</td>
                                             <td>{item.discription}</td>
                                             <td>
