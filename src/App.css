@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+}
+
+.form-section{
+  float: left;
+  width: 40%;
+}
+.Table-area{
+float: right;
+width: 60%;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.form-field{
+  margin-bottom: 20px;
+}
+input[type="text"]{
+  padding: 8px 20px;
+}
+
+.table-heading h2{
+  color: gray;
+}
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
