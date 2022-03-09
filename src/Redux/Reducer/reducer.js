@@ -1,8 +1,10 @@
+import { Updatedata } from "../Action/action"
 
 const initialState = {
+    
     data:[
         {
-            title:"html" , discription:"tutorial"
+          title:"html" , discription:"tutorial"
         }
     ]
 }
@@ -12,10 +14,16 @@ const reducer = (state=initialState,action) =>{
 console.log("action",action)
     switch(action.type){
         case 'ADD':
-            const list = state.data
-            list.push(action.payload)
+            const list = state.data;
+            let userid = action.id;
+            if(userid){
+                list.splice(userid-1,1,action.payload)
+            }else{
+                list.push(action.payload)
+            }
             return{
                 ...state,
+                id: state.id+1,
                 data: [...list]//[...state.data, action.payload] //state.data.push(action.payload)
             }
         break;
@@ -28,17 +36,13 @@ console.log("action",action)
             }
         break;
         case 'EDIT':
-            const data2 = state.data;
-            let current_object = data2[action.payload]
-            let current_user = {
-                title:current_object.title,
-                discription:current_object.discription
-            }
             return{
                 ...state,
-                data:[current_user]
+                isEdit:state.data[action.payload],
+                id:action.payload
             }
         break;
+        
         default:
             return state;
     }
