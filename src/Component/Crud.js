@@ -4,23 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 import {adddata, Deletedata, Editdata, Updatedata} from "../Redux/Action/action";
 
 const Crud = () =>{
-    // const {
-    //     register,
-    //     handleSubmit,
-    //     formState: { errors }
-    //   } = useForm();
-
+    // here define state
     const [title, setTitle] = useState("");
     const [discription, setDiscription] = useState("");
-    
+    // here call data from redux using useSelector Hook
+    // useSelecter work look like mapstateToProps
     const data = useSelector((state) => state.reducer.data )
     const test = useSelector((state) => state.reducer )
     console.log("data",data)
     var id = test.id;
-    // console.log("global id",id)
     var record = test.isEdit;
     
-    
+    // Here make Dispatcher use dispatch Action
+    // useDispatcher work look like mapDispatchtoProps
     const dispatch = useDispatch();
     const handletitle = (e) => setTitle(e.target.value);
     const handlediscription = (e) => setDiscription(e.target.value);
@@ -55,15 +51,14 @@ const Crud = () =>{
     const Delete = (id) =>{
         dispatch(Deletedata(id))
     }
-    // const Update = (record) =>{
-    //     var id = test.id;
-    //     dispatch(Updatedata(record,id))
-    // }
 
     return(
         
         <div className="home-page">
-            <h1>Crud Task</h1>
+            <h1><span className="red">C</span>rud + 
+                <span className="green">R</span>edux + 
+                <span className="blue">H</span>ook</h1>
+            <div className="page-wr">
             <div className="clearfix">
                 <div className="form-section">
                     <form id="myform">
@@ -73,8 +68,6 @@ const Crud = () =>{
                         <div className="form-field">
                             <input type="text" 
                             placeholder="Title"
-                            // value={state.title}
-                            // onChange={(e)=>setState({...state,title:e.target.value})}
                             value={title}
                             onChange={handletitle}
                             
@@ -84,8 +77,6 @@ const Crud = () =>{
                         <div className="form-field">
                             <input type="text"
                             placeholder="Discription"
-                            // value={state.discription}
-                            // onChange={(e)=>setState({...state,discription:e.target.value})}
                             value={discription}
                             onChange={handlediscription}
                             required
@@ -142,6 +133,7 @@ const Crud = () =>{
                 </div>    
             </div>
         </div>
+    </div>
     )
 }
 
