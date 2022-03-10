@@ -24,6 +24,7 @@ console.log("action",action)
             return{
                 ...state,
                 id: state.id+1,
+                isEdit: null,
                 data: [...list]//[...state.data, action.payload] //state.data.push(action.payload)
             }
         break;

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+// import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import {adddata, Deletedata, Editdata, Updatedata} from "../Redux/Action/action";
 
 const Crud = () =>{
-    
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     formState: { errors }
+    //   } = useForm();
+
     const [title, setTitle] = useState("");
     const [discription, setDiscription] = useState("");
     
@@ -71,8 +77,9 @@ const Crud = () =>{
                             // onChange={(e)=>setState({...state,title:e.target.value})}
                             value={title}
                             onChange={handletitle}
-                            required
-                            />   
+                            
+                            />
+                        
                         </div>
                         <div className="form-field">
                             <input type="text"
@@ -85,7 +92,7 @@ const Crud = () =>{
                             />   
                         </div>
                         <div className="form-field">
-                        <button onClick={Save}>
+                        <button className="submit" onClick={Save}>
                                 {
                                     
                                     record ? 
@@ -119,8 +126,8 @@ const Crud = () =>{
                                             <td>{item.title}</td>
                                             <td>{item.discription}</td>
                                             <td>
-                                                <button onClick={()=>Edit(id)}>Edit</button>
-                                                <button onClick={()=>Delete(id)}>Trash</button>
+                                                <button className="edit" onClick={()=>Edit(id)}><i className="fa fa-edit"></i></button>
+                                                <button className="delete" onClick={()=>Delete(id)}><i className="fa fa-trash-o"></i></button>
                                             </td>
                                         </tr>
                                         )
@@ -138,4 +145,4 @@ const Crud = () =>{
     )
 }
 
-export default Crud
+export default Crud;
