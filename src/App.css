@@ -45,3 +45,37 @@ td, th {
 ::placeholder{
   letter-spacing: 2.2px;
 }
+.submit{
+  padding: 8px 31px;
+  background: #ec6100;
+  border: 1px solid #ec6100;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: .4s;
+  letter-spacing: 2.1px;
+}
+.submit:hover{
+  background-color: blue;
+  border:1px solid blue;
+}
+.edit,.delete{
+  height: 30px;
+  width: 30px;
+  margin: 0px 3px;
+  border-radius: 50%;
+  background: green;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid green;
+  transition: .4s;
+}
+.delete{
+background-color: red;
+border:1px solid red;
+}
+.edit:hover,.delete:hover{
+  background-color: black;
+  border:1px solid black;
+}
